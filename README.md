@@ -7,7 +7,7 @@ Quer jogar Nas11? Você aguenta o tranco? Siga as instruções abaixo:
 1. Faça o fork deste projeto para a sua conta no Github.
 1. Execute o script SQL no diretorio bd/ para inserir os dados necessários à aplicação. É altamente recomendado o uso de MySQL como banco de dados deste projeto.
 1. Cumpra os objetivos abaixo e teste o projeto em um servidor Wildfly, versão 10.1, utilizando o arquivo de configuração "standalone.xml".
-1. Testes unitários não são obrigatórios, mas são fortemente encorajados.
+1. Testes unitários são fortemente encorajados.
 1. **Não faça tudo em um único commit!**
 
 ## Objetivo 1 - Configuração inicial do projeto
@@ -69,11 +69,55 @@ Crie um Endpoint REST que receba uma solicitação **em formato JSON** contendo 
 http://localhost/desafio-java/vendas/cadastro
 ```
 
+Exemplo do JSON de requisição:
+
+```
+"vendas": [{
+        "id":"100",
+        "cliente_id":"1",
+        "loja_id":"2",
+        "data":"2015-05-22T14:56:29"
+        "valor_bruto":"20.59",
+        "valor_desconto":"1.59",
+        "valor_final":"19.00",
+        "itens":[{
+            "produto_id":"1",
+            "valor_custo_und":"9.90",
+            "valor_desconto_und":"1.59",
+            "valor_venda_und":"20.59",
+            "quantidade":"1"
+            }]
+        },
+        {
+        "id":"101",
+        "cliente_id":"2",
+        "loja_id":"1",
+        "data":"2015-07-11T18:56:29"
+        "valor_bruto":"99.99",
+        "valor_desconto":"0.99",
+        "valor_final":"99.00",
+        "itens":[{
+            "produto_id":"2",
+            "valor_custo_und":"11.00",
+            "valor_desconto_und":"0.33",
+            "valor_venda_und":"33.00",
+            "quantidade":"2"
+            },
+            {
+            "produto_id":"4",
+            "valor_custo_und":"11.00",
+            "valor_desconto_und":"0.33",
+            "valor_venda_und":"33.00",
+            "quantidade":"1"
+            }]
+      }]
+```
+
 O Endpoint deverá realizar as seguintes validações, e retornar uma mensagem de erro personalizada para o usuário em cada uma delas:
 
 * Impedir o cadastro de uma venda cujo código da venda já esteja cadastrado no banco de dados.
 * Impedir o cadastro de uma venda com valor total nulo ou negativo.
 * Impedir o cadastro de uma venda com um código de cliente que não existe.
-* Impedir o cadastro de uma venda com um código de loja que não existe.
+* Impedir o cadastro de uma venda com um código de loja que não exista ou que tenha o status "INATIVA".
 * Impedir o cadastro de uma venda sem dados dos itens da venda.
 * Informar o cadastro da venda com sucesso, caso ela passe todas as validações acima.
