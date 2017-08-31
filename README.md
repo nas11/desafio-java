@@ -22,7 +22,7 @@ Quer jogar Nas11? Você aguenta o tranco? Siga as instruções abaixo:
 Crie um Endpoint REST que receba a seguinte requisição: (utilize o protocolo que julgar mais eficiente: GET, POST, etc)
 
 ```
-http://localhost/desafio-java/clientes/listar?name=ANA
+http://localhost/desafio-java/clientes/listar?nome=ANA
 ```
 
 E retorne **em formato JSON** todas as clientes que contém "Ana" no primeiro nome. **Traga somente os dados contidos na tabela de Clientes.** 
@@ -116,7 +116,7 @@ Exemplo do JSON de requisição:
 O Endpoint deverá realizar as seguintes validações, e retornar uma mensagem de erro personalizada para o usuário em cada uma delas:
 
 * Impedir o cadastro de uma venda cujo código da venda já esteja cadastrado no banco de dados.
-* Impedir o cadastro de uma venda com valor total nulo ou negativo.
+* Impedir o cadastro de uma venda com valores monetários nulos ou negativos.
 * Impedir o cadastro de uma venda com um código de cliente que não existe.
 * Impedir o cadastro de uma venda com um código de loja que não exista ou que tenha o status "INATIVA".
 * Impedir o cadastro de uma venda sem dados dos itens da venda.
